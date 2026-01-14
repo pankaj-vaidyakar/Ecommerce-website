@@ -4,14 +4,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./style.css">
-    <style>
-        #navbtn{
-            display: grid;
-            grid-template-columns: repeat(3,1fr);
-            align-items: center;
-            gap: 20PX;
-        }
-    </style>
 </head>
 <body>
       <!-- Navbar -->
@@ -32,28 +24,30 @@
 
 </body>
 <script>
-let username = localStorage.getItem("login-data")
-let navbuttons = document.getElementById("navbtn")
+  let username = localStorage.getItem("login_data");
+  let navbuttons = document.getElementById("navbtn");
 
-if(username!=null){
+  if(username!=null){
     navbuttons.innerHTML = " ";
 
-    let user = document.createElement("h1")
-    user.innerText = username;
+    let user = document.createElement("h2");
+    user.innerText = username
     user.style.color = "white"
-    
-    let cartbtn = document.createElement("button")
-    cartbtn.innerText = "cart"
+
+    let cartbtn = document.createElement("button");
+    cartbtn.innerText = "Cart"
     cartbtn.addEventListener("click",function(){
         window.location.href = "cart.html"
     })
-    let logoutbtn = document.createElement("button")
+    let logoutbtn = document.createElement("button");
     logoutbtn.innerText = "logout"
     logoutbtn.addEventListener("click",function(){
-        localStorage.removeItem("login-data")
+        localStorage.removeItem("login_data")
         window.location.href = "login.html"
+        
     })
+
     navbuttons.append(cartbtn,user,logoutbtn)
-}
+  }
 </script>
 </html>

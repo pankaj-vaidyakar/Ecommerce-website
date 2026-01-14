@@ -21,4 +21,28 @@
 
     <h1>Cart Page</h1>
 </body>
+<script>
+   let username = localStorage.getItem("login_data");
+  let navbuttons = document.getElementById("navbtn");
+
+  if(username!=null){
+    navbuttons.innerHTML = " ";
+
+    let user = document.createElement("h2");
+    user.innerText = username
+    user.style.color = "white"
+
+  
+
+    let logoutbtn = document.createElement("button");
+    logoutbtn.innerText = "logout"
+    logoutbtn.addEventListener("click",function(){
+        localStorage.removeItem("login_data")
+        window.location.href = "login.html"
+        
+    })
+
+    navbuttons.append(user,logoutbtn)
+  }
+</script>
 </html>
