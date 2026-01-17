@@ -53,27 +53,33 @@
 
 </body>
 <script>
-  let form = document.querySelector("form");
-  let name = document.getElementById("name");
-  let email = document.getElementById("email");
-  let mobile = document.getElementById("number");
-  let password = document.getElementById("password")
+ let form = document.querySelector("form");
+ let name = document.getElementById("name");
+ let email = document.getElementById("email");
+ let mobile = document.getElementById("number");
+ let password = document.getElementById("password")
 
-  form.addEventListener("submit",signupfun);
-let signup_arr =JSON.parse(localStorage.getItem("signup_data"))
-  function signupfun(){
-    event.preventDefault();
+ form.addEventListener("submit",signupfun)
 
-    let signup_obj = {
-        name:name.value,
-        email:email.value,
-        mobile:number.value,
-        password:password.value
-    }
+  let signup_arr = JSON.parse(localStorage.getItem("signup_data")) ||[];
+
+ function signupfun(){
+   event.preventDefault();
+  
+   let signup_obj = {
+    name:name.value,
+    email:email.value,
+    mobile:number.value,
+    password:password.value
+   }
+   
    signup_arr.push(signup_obj)
-localStorage.setItem("signup_data",JSON.stringify(signup_arr))
-alert("user created");
-window.location.href = "login.html"
-  }
+   localStorage.setItem("signup_data",JSON.stringify(signup_arr))
+   alert("user created");
+   window.location.href = "login.html"
+   
+   
+   
+ }
 </script>
 </html>

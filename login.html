@@ -48,29 +48,29 @@
     </div>
   </body>
    <script>
-   let form = document.querySelector("form");
-   let email = document.getElementById("email");
-   let password = document.getElementById("password");
-   let signup_data =JSON.parse(localStorage.getItem("signup_data"));
+  let form = document.querySelector("form");
+  let email = document.getElementById("email");
+  let password = document.getElementById("password");
+  let signup_data = JSON.parse(localStorage.getItem("signup_data"));
+  form.addEventListener("submit",loginfun);
 
-   form.addEventListener("submit",loginfun);
-
-   function loginfun(){
+  function loginfun(){
     event.preventDefault();
+
     let login_obj = {
       email:email.value,
       password:password.value
     }
-     
+    
     let isflag = false;
 
     for(let i=0;i<signup_data.length;i++){
       if(signup_data[i].email == login_obj.email){
         if(signup_data[i].password == login_obj.password){
-         isflag = true;
-         localStorage.setItem("login_data",signup_data[i].name)
+          isflag = true;
+          localStorage.setItem("login_data",signup_data[i].name)
         }else{
-          isflag = "wrong"
+          isflag = "wrong";
         }
       }
     }
@@ -83,7 +83,7 @@
     }else{
       alert("login failed")
     }
-
-   }
+     
+  }
    </script>
 </html>

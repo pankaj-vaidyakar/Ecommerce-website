@@ -18,36 +18,86 @@
 
 
 
-    <h1>Home Page</h1>
+    <div id="main"></div>
 
 
 
 </body>
 <script>
-  let username = localStorage.getItem("login_data");
-  let navbuttons = document.getElementById("navbtn");
+ let username = localStorage.getItem("login_data");
+ let navbuttons = document.getElementById("navbtn");
+ let main = document.getElementById("main");
+ let isdata = JSON.parse(localStorage.getItem("data"))
+ let cartarr =JSON.parse(localStorage.getItem("cartarr")) || [];
+ display(isdata)
 
-  if(username!=null){
+ 
+ if(username!=null){
     navbuttons.innerHTML = " ";
-
+     
     let user = document.createElement("h2");
-    user.innerText = username
+    user.innerText = username;
     user.style.color = "white"
 
     let cartbtn = document.createElement("button");
     cartbtn.innerText = "Cart"
     cartbtn.addEventListener("click",function(){
-        window.location.href = "cart.html"
+      window.location.href = "cart.html"
     })
     let logoutbtn = document.createElement("button");
-    logoutbtn.innerText = "logout"
+    logoutbtn.innerText = "Logout"
     logoutbtn.addEventListener("click",function(){
-        localStorage.removeItem("login_data")
+        localStorage.removeItem("login_data");
         window.location.href = "login.html"
-        
     })
 
     navbuttons.append(cartbtn,user,logoutbtn)
-  }
+ }
+ 
+function display(data){
+ data.map(function(el,index){
+   let title = document.createElement("h2");
+   title.innerText = el.title;
+   let price = document.createElement("h3");
+   price.innerText = el.price;
+   let image = document.createElement("img");
+   image.src = el.image;
+   let cartbtn = document.createElement("button");
+   cartbtn.innerText = "Add to Cart"
+   cartbtn.style.backgroundColor = "red"
+   cartbtn.addEventListener("click",function(){
+      let pankajcart = false;
+
+      for(let i=0;i<cartarr.length;i++){
+        if(cartarr[i].id == el.id){
+            pankajcart = true;
+            break;
+        }
+      }
+      if(pankajcart){
+     window.location.href = "cart.html"
+      }else{
+        cartarr.push(el);
+         localStorage.setItem("cartdata",JSON.stringify(cartarr));
+        alert("product is added to cart")
+        cartbtn.innerText = "Go to cart"
+       
+      }
+   })
+   let div = document.createElement("div");
+   div.append(image,title,price,cartbtn);
+   main.append(div)
+
+   
+ })
+
+}
+
+
+ 
+
 </script>
+
+<script src="./data.js"></script>
+
 </html>
